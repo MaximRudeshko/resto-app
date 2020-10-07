@@ -1,7 +1,8 @@
 const initialState = {
     menu : [],
     loading:true,
-    items: []
+    items: [],
+    totalPrice: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -32,16 +33,20 @@ const reducer = (state = initialState, action) => {
                 items: [
                     ...state.items,
                     newItem
-                ]
+                ],
+                totalPrice: state.totalPrice + newItem.price
             }
         case 'DELETE_ITEM':
             const index = action.payload;
             const itemIndex = state.items.findIndex(item => item.id === index);
+            const itemPrice = state.items[itemIndex]['price']
             return{
+                ...state,
                 items: [
                     ...state.items.slice(0, itemIndex),
                     ...state.items.slice(itemIndex + 1)
-                ]
+                ],
+                totalPrice: state.totalPrice - itemPrice
             }  
         default:
             return state
