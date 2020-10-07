@@ -1,8 +1,18 @@
 import React from 'react';
-import RestoServiceContext from '../resto-service-context';
+import {RestoServiceConsumer} from '../resto-service-context';
 
-const WithRestoService = () => () => {
-    return 1;
+const WithRestoService = () => (Wrapped) => {
+    return (props) => {
+        return (
+            <RestoServiceConsumer>
+                {
+                    (restoService) => {
+                        return <Wrapped {...props} restoService = {restoService}/>
+                    }
+                }
+            </RestoServiceConsumer>
+        )
+    } 
 };
 
 export default WithRestoService;

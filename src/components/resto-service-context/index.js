@@ -1,3 +1,6 @@
-import RestoServiceContext from './resto-service-context';
+import {RestoServiceConsumer, RestoServiceProvider} from './resto-service-context';
 
-export default RestoServiceContext;
+export {
+    RestoServiceConsumer,
+    RestoServiceProvider
+}
